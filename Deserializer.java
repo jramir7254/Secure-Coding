@@ -7,9 +7,9 @@ import java.io.File;
 public class Deserializer {
     public static void main(String[] args) {
         ArrayList<Person> database = new ArrayList<>();
-        printDatebase(database);
+        printDatabase(database);
         deserializeData(database, "people.ser");
-        printDatebase(database);
+        printDatabase(database);
 
     }
 
@@ -35,7 +35,7 @@ public class Deserializer {
         }
     }
 
-    public static void printDatebase(ArrayList<Person> database) {
+    public static void printDatabase(ArrayList<Person> database) {
         for(Person p : database) {
             System.out.println(p + "\n");
         }

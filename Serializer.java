@@ -11,7 +11,7 @@ public class Serializer {
         database.add(new Person("John Deer", 25));
         database.add(new Person("Le Bron", 16));
 
-        printDatebase(database);
+        printDatabase(database);
 
         serializeData(database, "people.ser");
 
@@ -33,7 +33,7 @@ public class Serializer {
         }
     }
 
-    public static void printDatebase(ArrayList<Person> database) {
+    public static void printDatabase(ArrayList<Person> database) {
         for(Person p : database) {
             System.out.println(p + "\n");
         }
