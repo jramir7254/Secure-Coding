@@ -2,60 +2,46 @@ import java.io.*;
 import java.util.Arrays;
 
 
-// idek what i was doin here
-/* 
+
 public class Main {
-    public static void main(String[] args) {
-        byte[] serializedData = readSerializedDataFromFile("people.ser");
-        System.out.println(Arrays.toString(serializedData));
+    public static void main(String[] args) throws Exception {
+        Person p = new Person("john doe", 30);
+        Person p2;
 
+        FileOutputStream f = new FileOutputStream("test.txt");
+        ByteArrayOutputStream b = new ByteArrayOutputStream();
+        ObjectOutputStream o = new ObjectOutputStream(b);
+
+        o.writeObject(p);
+
+        byte[] b2 = b.toByteArray();
         
-        for(int j = 0; j < serializedData.length; j++) {
-            byte b = serializedData[j];
-            for (int i = 7; i >= 0; i--) {
-                int bit = (b >> i) & 1;
-                System.out.print(bit);
-            }
+        for(int i = 35; i < b2.length; i++) {
+            b2[i] += 2;
+        }
+
+        f.write(b2);
+        f.close();
+        // o.writeObject(p);
+
+        FileInputStream f2 = new FileInputStream("test.txt");
         
-            System.out.print(" ");
-            //if(j % 10 == 0) System.out.println();
-        }
-    }
+        
+        byte[] b5 = f2.readAllBytes();
 
-    private static byte[] readSerializedDataFromFile(String fileName) {
-        // Read serialized data from the file into a byte array
-        try (InputStream inputStream = new FileInputStream(fileName)) {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                baos.write(buffer, 0, bytesRead);
-            }
-            return baos.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+        System.out.println(Arrays.toString(b5));
 
+        for(int i = 35; i < b5.length; i++) {
+            b5[i] -= 3;
+        }
 
-    public static void serialize(Object p, String fileName) {
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(fileName)))) {
-            oos.writeObject(p);
-        }
-        catch(Exception e) {
-            System.out.println(e);
-        }
-    }
+        System.out.println(Arrays.toString(b5));
 
-    public static Object deserialize(String fileName) {
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
-            return (Object) ois.readObject();
-        }
-        catch(Exception e) {
-            System.out.println(e);
-            return null;
-        }
+        ByteArrayInputStream b3 = new ByteArrayInputStream(b5);
+
+        ObjectInputStream o2 = new ObjectInputStream(b3);
+        p2 = (Person)o2.readObject();
+
+        System.out.println(p2);
     }
 }
-*/

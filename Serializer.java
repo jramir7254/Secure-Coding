@@ -1,7 +1,11 @@
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.io.File;
+import java.io.FileInputStream;
 
 /*
  * This class imitates a person who is creating a "database"
@@ -11,7 +15,7 @@ import java.io.File;
  */
 
 public class Serializer {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // Creating "database" and adding objects of type Person
         ArrayList<Person> database = new ArrayList<>();
 
@@ -21,7 +25,7 @@ public class Serializer {
 
         printDatabase(database);
 
-        serializeData(database, "people.ser");
+        serializeData(database, "people.txt");
     }
 
     
